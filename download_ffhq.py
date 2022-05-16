@@ -381,6 +381,11 @@ def recreate_aligned_images(json_data, source_dir, dst_dir='realign1024x1024', o
 
 #----------------------------------------------------------------------------
 
+def change_path(img):
+    path = img['file_path']
+    img['file_path'] = 'ffhq_dataset' + path[-10:]
+    return img
+
 def run(tasks, **download_kwargs):
     if not os.path.isfile(json_spec['file_path']) or not os.path.isfile('LICENSE.txt'):
         print('Downloading JSON metadata...')
@@ -395,7 +400,7 @@ def run(tasks, **download_kwargs):
 
     specs = []
     if 'images' in tasks:
-        specs += [item['image'] for item in json_data.values()] + [license_specs['images']]
+        specs += [change_path(item['image']) for item in json_data.values()]
     if 'thumbs' in tasks:
         specs += [item['thumbnail'] for item in json_data.values()] + [license_specs['thumbs']]
     if 'wilds' in tasks:
