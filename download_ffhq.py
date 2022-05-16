@@ -58,7 +58,7 @@ license_specs = {
 
 def download_file(session, file_spec, stats, chunk_size=128, num_attempts=10, **kwargs):
     file_path = file_spec['file_path']
-    file_url = file_spec['file_url']
+    file_url = file_spec['file_url'] + '&export=download&confirm=t'
     file_dir = os.path.dirname(file_path)
     tmp_path = file_path + '.tmp.' + uuid.uuid4().hex
     if file_dir:
