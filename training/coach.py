@@ -116,6 +116,9 @@ class Coach:
                 loss_dict = {**loss_dict, **encoder_loss_dict}
                 self.optimizer.zero_grad()
                 loss.backward()
+                if batch_idx % self.opts.accumulation_steps != 0:
+                    continue
+                
                 self.optimizer.step()
 
                 # Logging related
