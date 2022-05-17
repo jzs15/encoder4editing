@@ -16,6 +16,7 @@ class TrainOptions:
 
         self.parser.add_argument('--batch_size', default=4, type=int, help='Batch size for training')
         self.parser.add_argument('--test_batch_size', default=2, type=int, help='Batch size for testing and inference')
+        self.parser.add_argument('--accumulation_steps', default=2, type=int, help='Gradient accumulation steps')
         self.parser.add_argument('--workers', default=4, type=int, help='Number of train dataloader workers')
         self.parser.add_argument('--test_workers', default=2, type=int,
                                  help='Number of test/inference dataloader workers')
